@@ -73,6 +73,15 @@ const Form = ({currentId, setCurrentId}) => {
           value={postData.title}
           onChange={(e) => setPostData({...postData, title: e.target.value})}
         />
+        <div className={classes.fileInput}>
+          <FileBase
+            type='file'
+            multiple={false}
+            onDone={({base64}) =>
+              setPostData({...postData, selectedFile: base64})
+            }
+          />
+        </div>
         <TextField
           name='message'
           variant='outlined'
@@ -93,15 +102,7 @@ const Form = ({currentId, setCurrentId}) => {
             setPostData({...postData, tags: e.target.value.split(",")})
           }
         />
-        <div className={classes.fileInput}>
-          <FileBase
-            type='file'
-            multiple={false}
-            onDone={({base64}) =>
-              setPostData({...postData, selectedFile: base64})
-            }
-          />
-        </div>
+
         <Button
           className={classes.buttonSubmit}
           variant='contained'
